@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dreven</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            poppins: ['Poppins', 'sans-serif'],
+            inter: ['Inter', 'sans-serif'],
+            manrope: ['Manrope', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .step-container {
+      animation: slide-in 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    @keyframes slide-in {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .screen-container {
+        transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    }
+    .screen-container.exiting {
+        opacity: 0;
+        transform: scale(0.98);
+        pointer-events: none;
+    }
+
+    .slide-up-fade-in {
+        animation: slide-up-fade-in-animation 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s forwards;
+        opacity: 0;
+    }
+    @keyframes slide-up-fade-in-animation {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    @keyframes subtle-slide-up-fade-in-animation {
+        from {
+            opacity: 0;
+            transform: translateY(10px) scale(0.98);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+    .subtle-slide-up-fade-in {
+        animation: subtle-slide-up-fade-in-animation 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    .animate-fade-in {
+        animation: fade-in-animation 0.5s ease-in-out forwards;
+    }
+    @keyframes fade-in-animation {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes fade-in-up-word-animation {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-fade-in-up-word {
+      animation: fade-in-up-word-animation 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    @keyframes fade-in-down-word-animation {
+      from {
+        opacity: 0;
+        transform: translateY(-15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-fade-in-down-word {
+      animation: fade-in-down-word-animation 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
+    .cursor-blink {
+      animation: blink 1s step-end infinite;
+      display: inline-block;
+      width: 2px;
+      height: 1.1em;
+      background-color: #e5e5e5; /* neutral-200 */
+      margin-left: 4px;
+      vertical-align: text-bottom;
+    }
+
+    @keyframes logo-pulse-fade {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+      }
+      100% {
+        transform: scale(0.9);
+        opacity: 0;
+      }
+    }
+    .animate-logo-pulse-fade {
+      animation: logo-pulse-fade 2.5s cubic-bezier(0.4, 0, 0.6, 1) forwards;
+    }
+
+
+    /* Custom styles for iOS-like range slider */
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 5px;
+      outline: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 28px;
+      height: 28px;
+      background: #f0f0f0;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      box-shadow: 0 0.5px 4px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.1s ease-in-out;
+    }
+
+    input[type="range"]:active::-webkit-slider-thumb {
+        transform: scale(1.1);
+    }
+    
+    input[type="range"]::-moz-range-thumb {
+      width: 28px;
+      height: 28px;
+      background: #f0f0f0;
+      border-radius: 50%;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    }
+
+    @keyframes countdown-pulse {
+      0%, 100% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      20%, 80% {
+        opacity: 1;
+        transform: scale(1.1);
+      }
+    }
+    .countdown-number {
+      animation: countdown-pulse 1s ease-in-out forwards;
+    }
+
+    @keyframes chat-bubble-in {
+      from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    .chat-bubble {
+      animation: chat-bubble-in 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    .no-overscroll {
+      overscroll-behavior-y: contain;
+    }
+  </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.29.0"
+  }
+}
+</script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
